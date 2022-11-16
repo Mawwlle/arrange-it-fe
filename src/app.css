@@ -1,0 +1,42 @@
+.app{
+    
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+
+
+    background: linear-gradient(
+            rgba(255, 255, 255, 1),
+            rgba(255, 255, 255, 0)
+    ),
+    url("https://static.vecteezy.com/system/resources/previews/007/105/340/non_2x/beautiful-colorful-gradient-background-combination-of-bright-colors-soft-and-smooth-texture-used-for-background-free-vector.jpg");
+    background-size: 120%;
+    background-position: center;
+}
+
+form{
+    background-color: white;
+    padding: 0px 60px;
+    border-radius: 10px;
+}
+
+h2{
+    color: coral;
+    text-align: center;
+    font-family: ".SF NS Mono", serif;
+}
+
+button{
+    width: 100%;
+    height: 50px;
+    padding: 10px;
+    border: none;
+    background-color: darkorange;
+    color: white;
+    border-radius: 5px;
+    font-weight: bold;
+    cursor: pointer;
+    margin-top: 15px;
+    margin-bottom: 15px;
+}
