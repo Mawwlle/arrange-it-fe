@@ -1,91 +1,36 @@
-import "./app.css"
-import FormInput from "./components/FormInput";
-import {useState} from "react";
+import "./index.css"
 
-const App = () => {
-    const [values, setVal] = useState({
-        username: "",
-        email: "",
-        birthday: "",
-        fullName: "",
-        password: "",
-        confirmPassword: ""
-    });
+import { Routes, Route } from "react-router-dom";
+import { LoginPage } from "./pages/Login";
+import { HomePage } from "./pages/Home";
+import { SignUpPage } from "./pages/SignUp";
+import { ProfilePage } from "./pages/Profile";
+import { SettingsPage } from "./pages/Settings";
+import { ProtectedRoute } from "./components/ProtectedRoute";
 
-    const inputs = [
-        {
-            id: 1,
-            name: "username",
-            type: "text",
-            placeholder: "Username",
-            errorMessage: "Username should be 3-16 chars and shouldn't include any special character!",
-            label: "Username",
-            pattern: "^[A-Za-z0-9]{3,16}$",
-            required: true,
-        },
-        {
-            id: 2,
-            name: "email",
-            type: "email",
-            placeholder: "Email",
-            errorMessage: "Email should look like youremail@domain.com",
-            label: "Email",
-            required: true,
-        },
-        {
-            id: 3,
-            name: "birthday",
-            type: "date",
-            placeholder: "Birthday",
-            label: "Birthday"
-        },
-        {
-            id: 4,
-            name: "fullName",
-            type: "text",
-            placeholder: "Full Name",
-            errorMessage: "",
-            label: "Full Name",
-        },
-        {
-            id: 5,
-            name: "password",
-            type: "password",
-            placeholder: "Password",
-            errorMessage: "Password should be 8-20 characters and it should include at least one letter, one number and one special char",
-            label: "Password",
-            pattern: "^(?=.*[a-zA-Z])(?=.*\\d)(?=.*[!@#$%^&*()_+])[A-Za-z\\d][A-Za-z\\d!@#$%^&*()_+]{7,19}$",
-            required: true,
-        },
-        {
-            id: 6,
-            name: "confirmPassword",
-            type: "password",
-            placeholder: "Confirm Password",
-            errorMessage: "Passwords don't match",
-            label: "Confirm Password",
-            pattern: values.password,
-            required: true,
-        }
-    ]
 
-    const handleSubmit = (e) => {
-        e.preventDefault();
-    }
-
-    const onChange = (e) => {
-        setVal({...values, [e.target.name]: e.target.value});
-    }
-    console.log(values);
-  return <div className="app">
-      <form onSubmit={handleSubmit}>
-          <h2>Register</h2>
-          {inputs.map((input) => (
-              <FormInput key={input.id} {...input} value={values[input.name]} onChange={onChange}/>
-          ))}
-          <button>Submit</button>
-      </form>
-  </div>;
+export default function App() {
+    return (
+        <Routes>
+            <Route path="/" element={<HomePage />} />
+            <Route path="/login" element={<LoginPage />} />
+            <Route path="/register" element={<SignUpPage />} />
+            <Route
+                path="/profile"
+                element={
+                    <ProtectedRoute>
+                        <ProfilePage />
+                    </ProtectedRoute>
+                }
+            />
+            <Route
+                path="/settings"
+                element={
+                    <ProtectedRoute>
+                        <SettingsPage />
+                    </ProtectedRoute>
+                }
+            />
+        </Routes>
+    );
 }
-
-export default App;
