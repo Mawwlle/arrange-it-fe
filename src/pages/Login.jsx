@@ -82,7 +82,7 @@ export const LoginPage = () => {
         e.preventDefault();
 
         let formData = new FormData(e.currentTarget);
-        let username = formData.get("username");
+        let data = formData.get("username");
 
         auth.signin(username, () => {
             // Send them back to the page they tried to visit when they were
