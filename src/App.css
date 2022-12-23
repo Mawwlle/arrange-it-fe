@@ -30,3 +30,21 @@ label {
   -webkit-border-radius: 50%;
   border-radius: 50%;
 }
+.event-item {
+  width: 100%;
+  border-radius: 8px;
+  margin-bottom: 15px;
+  padding: 5px 10px;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
+}
+
+.event-item__button {
+  background: none;
+  border-radius: 8px;
+  border: none;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
+}
+
+.event-item__button:active {
+  box-shadow: 0 0 3px rgba(0, 0, 0, 0.3);
+}

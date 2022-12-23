@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const API_URL = "http://localhost:8000/";
+const API_URL = "http://5.159.101.107:8000/";
 
 class AuthService {
     login(username, password) {
@@ -23,10 +23,13 @@ class AuthService {
         localStorage.removeItem("token");
     }
 
-    register(username, email, password) {
-        return axios.post(API_URL + "signup", {
+    register(full_name, username, email, password) {
+        return axios.post(API_URL + "sign_up", {
+            "info": {
+            full_name,
             username,
             email,
+            },
             password
         });
     }
@@ -41,7 +44,7 @@ class AuthService {
 
         var config = {
             method: 'get',
-            url: API_URL + "user?username=" + username,
+            url: API_URL + "user/" + username,
             headers: {
                 'kbn-xsrf': 'true',
                 'Authorization': 'Bearer ' + token,
@@ -49,8 +52,9 @@ class AuthService {
             }
         };
 
-        var response = axios(config);
+        const response = axios(config);
 
+        console.log(response.response)
         return response;
     }
 }

@@ -12,6 +12,9 @@ import Home from "./components/home.component";
 import Login from "./components/login.component";
 import Profile from "./components/profile.component";
 import Register from "./components/register.component";
+import Event from "./components/event.component"
+import { useContext } from "react";
+import { Context } from ".";
 
 class App extends Component {
   constructor(props) {
@@ -19,20 +22,20 @@ class App extends Component {
     this.logOut = this.logOut.bind(this);
 
     this.state = {
-      // showModeratorBoard: false,
-      // showAdminBoard: false,
       currentUser: undefined,
     };
   }
 
   componentDidMount() {
-    const user = AuthService.getCurrentUser();
+    // const { user } = useContext(Context) 
+    let user = AuthService.getCurrentUser()
+    ?.then(res => this.setState({
+      currentUser: res.data
+  }))
 
     if (user) {
       this.setState({
-        currentUser: user,
-        // showModeratorBoard: user.roles.includes("ROLE_MODERATOR"),
-        // showAdminBoard: user.roles.includes("ROLE_ADMIN"),
+        currentUser: user
       });
     }
   }
@@ -56,6 +59,7 @@ class App extends Component {
 
     return (
       <div>
+      
         <nav className="navbar navbar-expand navbar-dark bg-dark">
           <div className="navbar-nav mr-auto">
             <li className="nav-item">
@@ -64,33 +68,23 @@ class App extends Component {
               </Link>
             </li>
 
-            {/* {showModeratorBoard && (
-              <li className="nav-item">
-                <Link to={"/mod"} className="nav-link">
-                  Moderator Board
-                </Link>
-              </li>
-            )}
-
-            {showAdminBoard && (
-              <li className="nav-item">
-                <Link to={"/admin"} className="nav-link">
-                  Admin Board
-                </Link>
-              </li>
-            )} */}
-
             {currentUser && (
               <li className="nav-item">
-                <Link to={"/user"} className="nav-link">
-                  User
+                <Link to={"/profile"} className="nav-link">
+                  {currentUser?.info?.username}
                 </Link>
               </li>
             )}
+
+            <li className="nav-item">
+              <Link to={"/event"} className="nav-link">
+                Event
+              </Link>
+            </li>
           </div>
 
           {currentUser ? (
-            <div className="navbar-nav ml-auto">
+            <div className="navbar-nav ml-auto">            
               <li className="nav-item">
                 <Link to={"/profile"} className="nav-link">
                   {currentUser.username}
@@ -124,6 +118,7 @@ class App extends Component {
             <Route path="/" element={<Home />} />
             <Route path="/home" element={<Home />} />
             <Route path="/login" element={<Login />} />
+            <Route path="/event" element={<Event/>} />
             <Route path="/register" element={<Register />} />
             <Route path="/profile" element={<Profile />} />
             <Route path="/user" element={<BoardUser />} />
