@@ -12,6 +12,9 @@ import Home from "./components/home.component";
 import Login from "./components/login.component";
 import Profile from "./components/profile.component";
 import Register from "./components/register.component";
+import Event from "./components/event.component"
+import { useContext } from "react";
+import { Context } from ".";
 
 class App extends Component {
   constructor(props) {
@@ -19,20 +22,18 @@ class App extends Component {
     this.logOut = this.logOut.bind(this);
 
     this.state = {
-      // showModeratorBoard: false,
-      // showAdminBoard: false,
       currentUser: undefined,
     };
   }
 
   componentDidMount() {
-    const user = AuthService.getCurrentUser();
+    // const { user } = useContext(Context) 
+    AuthService.getCurrentUser();
 
+    console.log(user)
     if (user) {
       this.setState({
-        currentUser: user,
-        // showModeratorBoard: user.roles.includes("ROLE_MODERATOR"),
-        // showAdminBoard: user.roles.includes("ROLE_ADMIN"),
+        currentUser: user
       });
     }
   }
@@ -90,7 +91,7 @@ class App extends Component {
           </div>
 
           {currentUser ? (
-            <div className="navbar-nav ml-auto">
+            <div className="navbar-nav ml-auto">            
               <li className="nav-item">
                 <Link to={"/profile"} className="nav-link">
                   {currentUser.username}
@@ -124,6 +125,7 @@ class App extends Component {
             <Route path="/" element={<Home />} />
             <Route path="/home" element={<Home />} />
             <Route path="/login" element={<Login />} />
+            <Route path="/event" element={<Event/>} />
             <Route path="/register" element={<Register />} />
             <Route path="/profile" element={<Profile />} />
             <Route path="/user" element={<BoardUser />} />

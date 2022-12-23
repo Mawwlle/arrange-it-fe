@@ -55,6 +55,7 @@ export default class Register extends Component {
         this.onChangePassword = this.onChangePassword.bind(this);
 
         this.state = {
+            full_name: "",
             username: "",
             email: "",
             password: "",
@@ -93,6 +94,7 @@ export default class Register extends Component {
 
         if (this.checkBtn.context._errors.length === 0) {
             AuthService.register(
+                this.state.full_name,
                 this.state.username,
                 this.state.email,
                 this.state.password
