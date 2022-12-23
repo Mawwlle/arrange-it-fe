@@ -54,6 +54,7 @@ class AuthService {
 
         const response = axios(config);
 
+        console.log(response.response)
         return response;
     }
 }

@@ -28,9 +28,11 @@ class App extends Component {
 
   componentDidMount() {
     // const { user } = useContext(Context) 
-    AuthService.getCurrentUser();
+    let user = AuthService.getCurrentUser()
+    ?.then(res => this.setState({
+      currentUser: res.data
+  }))
 
-    console.log(user)
     if (user) {
       this.setState({
         currentUser: user
@@ -57,6 +59,7 @@ class App extends Component {
 
     return (
       <div>
+      
         <nav className="navbar navbar-expand navbar-dark bg-dark">
           <div className="navbar-nav mr-auto">
             <li className="nav-item">
@@ -65,29 +68,19 @@ class App extends Component {
               </Link>
             </li>
 
-            {/* {showModeratorBoard && (
-              <li className="nav-item">
-                <Link to={"/mod"} className="nav-link">
-                  Moderator Board
-                </Link>
-              </li>
-            )}
-
-            {showAdminBoard && (
-              <li className="nav-item">
-                <Link to={"/admin"} className="nav-link">
-                  Admin Board
-                </Link>
-              </li>
-            )} */}
-
             {currentUser && (
               <li className="nav-item">
-                <Link to={"/user"} className="nav-link">
-                  User
+                <Link to={"/profile"} className="nav-link">
+                  {currentUser?.info?.username}
                 </Link>
               </li>
             )}
+
+            <li className="nav-item">
+              <Link to={"/event"} className="nav-link">
+                Event
+              </Link>
+            </li>
           </div>
 
           {currentUser ? (

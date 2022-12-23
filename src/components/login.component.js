@@ -84,7 +84,8 @@ class Login extends Component {
             <div className="col-md-12">
                 <div className="card card-container">
                     <img
-                        src="//ssl.gstatic.com/accounts/ui/avatar_2x.png"
+                        // src="//ssl.gstatic.com/accounts/ui/avatar_2x.png"
+                        src="https://www.gannett-cdn.com/media/2020/02/18/USATODAY/usatsports/imageforentry18-itm.jpg"
                         alt="profile-img"
                         className="profile-img-card"
                     />
