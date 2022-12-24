@@ -53,9 +53,10 @@ export default class Register extends Component {
         this.onChangeUsername = this.onChangeUsername.bind(this);
         this.onChangeEmail = this.onChangeEmail.bind(this);
         this.onChangePassword = this.onChangePassword.bind(this);
+        this.onChangeName = this.onChangeName.bind(this);
 
         this.state = {
-            full_name: "",
+            name: "",
             username: "",
             email: "",
             password: "",
@@ -79,6 +80,12 @@ export default class Register extends Component {
     onChangePassword(e) {
         this.setState({
             password: e.target.value
+        });
+    }
+
+    onChangeName(e) {
+        this.setState({
+            full_name: e.target.value
         });
     }
 
@@ -141,6 +148,17 @@ export default class Register extends Component {
                     >
                         {!this.state.successful && (
                             <div>
+                                <div className="form-group">
+                                    <label htmlFor="username">Full Name</label>
+                                    <Input
+                                        type="text"
+                                        className="form-control"
+                                        name="username"
+                                        value={this.state.full_name}
+                                        onChange={this.onChangeName}
+                                        validations={[required, vusername]}
+                                    />
+                                </div>
                                 <div className="form-group">
                                     <label htmlFor="username">Username</label>
                                     <Input

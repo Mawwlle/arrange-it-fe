@@ -15,8 +15,8 @@ export default class Home extends Component {
         UserService.getPublicContent().then(
             response => {
                 this.setState({
-                    content: "Hello world"
-                    // content: response.data
+                    content: "Ну в общем тут будет классная страничка где пишется о последних новостях, самых популярных ивентах и прочее." +
+                        "А пока ведутся работы...."
                 });
             },
             error => {
@@ -35,6 +35,11 @@ export default class Home extends Component {
             <div className="container">
                 <header className="jumbotron">
                     <h3>{this.state.content}</h3>
+                    <img
+                        src="https://i.pinimg.com/736x/6b/ca/63/6bca63fd50c35f6206cc0d174504e023.jpg"
+                        alt="profile-img"
+                        className="profile-img-card"
+                    />
                 </header>
             </div>
         );

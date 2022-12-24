@@ -49,11 +49,11 @@ export default class Profile extends Component {
                     <div>
                         <header className="jumbotron">
                             <h3>
-                                <strong>{currentUser?.info?.username}'s</strong> Profile
+                                <strong>{currentUser?.username}'s</strong> Profile
                             </h3>
                         </header>
                         <p>
-                            <strong>Email: {currentUser?.info?.email}</strong>
+                            <strong>Email: {currentUser?.email}</strong>
                         </p>
                         <strong>Authorities:</strong>
                         <ul>Still in progress, sorry.</ul>

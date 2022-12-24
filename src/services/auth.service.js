@@ -23,13 +23,11 @@ class AuthService {
         localStorage.removeItem("token");
     }
 
-    register(full_name, username, email, password) {
-        return axios.post(API_URL + "sign_up", {
-            "info": {
-            full_name,
+    register(name, username, email, password) {
+        return axios.post(API_URL + "users/sign_up", {
+            name,
             username,
             email,
-            },
             password
         });
     }
@@ -44,7 +42,7 @@ class AuthService {
 
         var config = {
             method: 'get',
-            url: API_URL + "user/" + username,
+            url: API_URL + "users/" + username,
             headers: {
                 'kbn-xsrf': 'true',
                 'Authorization': 'Bearer ' + token,
