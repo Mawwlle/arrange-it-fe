@@ -13,8 +13,6 @@ import Login from "./components/login.component";
 import Profile from "./components/profile.component";
 import Register from "./components/register.component";
 import Event from "./components/event.component"
-import { useContext } from "react";
-import { Context } from ".";
 
 class App extends Component {
   constructor(props) {
@@ -27,7 +25,6 @@ class App extends Component {
   }
 
   componentDidMount() {
-    // const { user } = useContext(Context) 
     let user = AuthService.getCurrentUser()
     ?.then(res => this.setState({
       currentUser: res.data
@@ -54,7 +51,6 @@ class App extends Component {
   }
 
   render() {
-    // const { currentUser, showModeratorBoard, showAdminBoard } = this.state;
     const { currentUser } = this.state;
 
     return (

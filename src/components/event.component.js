@@ -13,10 +13,10 @@ export default function Event() {
 
     const eventList = events.events.map(event => {
         return (
-            <EventItem key={event.id} event={event} />
+            <EventItem key={event.place} event={event} />
         )
     })
-
+    // console.log(events.events)
     useEffect(() => {
         eventService.getAll()
             .then(data => events.setEvents(data))
